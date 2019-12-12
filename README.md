@@ -7,3 +7,5 @@ From rent to bills to plane tickets. Now it can be quickly done on this app and 
 Not designed to store information long term, nor to be particularly secure, hence use of local storage in the browser to store data.
 
 ### This was mostly an exercise to practice DOM manipulation in Vanilla Javascript!
+
+Site can be viewed here: https://derek-watson14.github.io/Split-It/
