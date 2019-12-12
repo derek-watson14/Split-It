@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="./base.css">
+  <link rel="stylesheet" href="./splitit.css">
+  <title>Split it!</title>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="header">
+      <h1>Split it!</h1>
+      <p>A tool to calculate who owes who how much.</p>
+      <div class="ower-info-container">
+        <p>Currently: <span id="ower-info"></span></p>
+      </div>
+    </div>
+
+    <form name="new-trans">
+      <div class="form-container">
+
+        <div class="section">
+          <div class="section__header">
+            <img id="payer-photo" src="./anni.png" alt="anni">
+            <h2 id="payer-name">Anni Paid:</h2>
+            <input type="hidden" id="payer" name="payer" value="anni">
+          </div>
+          <div class="section__input">
+            <label for="amount-paid">How much paid?*</label>
+            <span class="input__currency"><input type="text" id="form-amount-paid" name="amountPaid"
+                class="input__currency-input" value="" placeholder="0.00" autocomplete="off">€
+            </span>
+            <p class="input__alert"></p>
+          </div>
+          <div class="section__input">
+            <label for="category">For what?*</label>
+            <select id="form-category" name="category">
+              <option selected default value="">Choose category...</option>
+              <option value="Bills">Bills</option>
+              <option value="Groceries">Groceries</option>
+              <option value="Rent">Rent</option>
+              <option value="Restaurants">Restautrants</option>
+              <option value="Transportation">Transportation</option>
+              <option value="Other">Other</option>
+            </select>
+            <p class="input__alert"></p>
+          </div>
+          <div class="section__input">
+            <label for="date">Date?*</label>
+            <input type="date" id="form-date" name="date" value="" min="2019-11-01"
+              max="2020-12-31">
+            <p class="input__alert"></p>
+          </div>
+        </div>
+
+
+        <div class="swap">
+          <button type="button" id="form-swap" name="swap" title="Swap People">
+            <img src="./swap.png" alt="swap payer">
+          </button>
+        </div>
+
+        <div class="section">
+          <div class="section__header">
+            <img id="ower-photo" src="./derek.png" alt="derek">
+            <h2 id="ower-name">Derek Owes:</h2>
+            <input type="hidden" id="ower" name="ower" value="derek">
+          </div>
+          <div class="section__input">
+            <label for="payer">How much owed?*</label>
+            <span class="input__currency"><input type="text" class="input__currency-input"
+                id="form-amount-owed" name="amountOwed" value="" placeholder="0.00"
+                autocomplete="off">€
+            </span>
+            <input type="checkbox" id="half" name="half" checked>
+            <label for="agree" class="input__smLabel">Half of amount paid</label>
+            <p class="input__alert"></p>
+          </div>
+          <div class="section__input">
+            <label for="note">Note:</label>
+            <input type="text" id="form-note" name="note" value="" maxlength="25"
+              placeholder="About this transaction..." autocomplete="off">
+            <p class="input__alert"></p>
+          </div>
+          <hr>
+        </div>
+
+      </div>
+
+      <hr>
+
+      <div class="submit-container">
+        <button type="submit" id="form-submit">Submit Transaction</button>
+        <h5 class="submit-container__alert"></h5>
+      </div>
+    </form>
+  </div>
+
+  <div class="wrapper">
+    <div class="trans-header">
+      <h2>Transaction Logs</h2>
+    </div>
+    <div class="table-section-conatiner">
+      <div class="table-tab-container">
+        <div tabindex="0" role="button" class="table-tab active" id="anni-tab">
+          <p class="table-tab__label">Anni</p>
+        </div>
+        <div tabindex="0" role="button" class="table-tab" id="derek-tab">
+          <p class="table-tab__label">Derek</p>
+        </div>
+      </div>
+      <div class="tables-container">
+        <div class="person-data" id="anni-data">
+          <div class="data-summary">
+            <div class="summary-box" id="anni-paid__total">
+              <p class="summary-box__text">Anni has paid: </p>
+              <p class="summary-box__amount"></p>
+            </div>
+            <div class="summary-box" id="derek-owes__total">
+              <p class="summary-box__text">Derek owes: </p>
+              <p class="summary-box__amount"></p>
+            </div>
+          </div>
+          <table class="transaction-log">
+            <tr>
+              <th title="Delete Entry">X</th>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Amount Paid</th>
+              <th>Amount Owed</th>
+              <th>Note</th>
+            </tr>
+            <tbody id="anni-table"></tbody>
+          </table>
+        </div>
+        <div class="person-data" hidden id="derek-data">
+          <div class="data-summary">
+            <div class="summary-box" id="derek-paid__total">
+              <p class="summary-box__text">Derek has paid: </p>
+              <p class="summary-box__amount"></p>
+            </div>
+            <div class="summary-box" id="anni-owes__total">
+              <p class="summary-box__text">Anni owes: </p>
+              <p class="summary-box__amount"></p>
+            </div>
+          </div>
+          <table class="transaction-log">
+            <tr>
+              <th title="Delete Entry">X</th>
+              <th>Date</th>
+              <th>Category</th>
+              <th>Amount Paid</th>
+              <th>Amount Owed</th>
+              <th>Note</th>
+              <tbody id="derek-table"></tbody>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./splitit.js"></script>
+</body>
+
+</html>
