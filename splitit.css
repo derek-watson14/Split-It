@@ -6,11 +6,14 @@ html {
   --grey: #e7e7e7;
   --gray: var(--grey);
   --blue: #0072B9;
+  --blueTrans: rgba(0,114,185,0.5);
   --pink: #D60087;
+  --pinkTrans: rgba(214, 0, 135, 0.5);
   --black: #2e2e2e;
   --snow: #ffffff;
   --frost: #CED4DD;
   --freeze: #A1ABC4;
+  --freezeTrans: rgba(161, 171, 196, 0.5);
   --blood: #A10010;
   --coal: #3A3D46;
   --box-shadow: 0 0 5px 5px rgba(0,0,0,0.2);
@@ -89,6 +92,49 @@ h6 {
   text-shadow: none;
 }
 
+/* ! MODAL -------------------------------------- */
+
+.modal-outer {
+  display: grid;
+  background: var(--freezeTrans);
+  position: fixed;
+  z-index: 3;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  /* Hide this modal until we need it */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.modal-outer.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-outer img {
+  width: 100%;
+  border-radius: 50%;
+  border: 3px solid var(--pink);
+}
+
+.modal-inner {
+  width: 400px;
+  padding: 3rem 3rem 1.5rem 3rem;
+  border-radius: 10px;
+
+  background: white;
+  transform: scale(0.25);
+  transition: transform 0.5s;
+}
+
+.modal-outer.open .modal-inner {
+  transform: scale(1);
+}
 
 
 /* ! HEADER ------------------------------------- */
@@ -149,11 +195,17 @@ h6 {
 }
 
 .section__header img {
-  height: 100px;
+  height: 115px;
   border: 3px solid var(--pink);
   border-radius: 50%;
   margin-bottom: 10px;
   box-shadow: var(--box-shadow);
+  cursor: pointer;
+  transition: transform 100ms;
+}
+
+.section__header img:hover {
+  transform: scale(1.05);
 }
 
 

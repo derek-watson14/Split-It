@@ -34,6 +34,54 @@ function removeTransaction(id) {
 
 // * END LOCAL STORAGE RETRIEVAL   --------------------------------------------
 
+// ! MODAL   ------------------------------------------------------------------
+
+// > Modal Outer Global Variable...............................................
+const modalOuter = document.querySelector('.modal-outer');
+
+// > Opening and Closing Modal.................................................
+function toggleModal() {
+  modalOuter.classList.toggle('open');
+}
+
+function handleImgClick(event) {
+  const modalInner = document.querySelector('.modal-inner');
+  const { src, alt, dataset } = event.currentTarget;
+
+  modalInner.innerHTML = `
+    <img width="400" src="${src}" alt="${alt}"/>
+    <p>${dataset.desc}</p>
+  `;
+
+  toggleModal();
+}
+
+// > Listeners.................................................................
+function setImageListeners() {
+  const images = document.querySelectorAll('.section__header img');
+  images.forEach(button => button.addEventListener('click', handleImgClick));
+}
+
+function setClickOutsideListener() {
+  modalOuter.addEventListener('click', event => {
+    if (!event.target.closest('.modal-inner')) toggleModal();
+  });
+}
+
+function setEscKeyListener() {
+  window.addEventListener('keydown', event => {
+    if (event.key === 'Escape') toggleModal();
+  });
+}
+
+function setModalListeners() {
+  setImageListeners();
+  setClickOutsideListener();
+  setEscKeyListener();
+}
+
+// * END MODAL   --------------------------------------------------------------
+
 // ! FORM FIELDS AND VALIDATION   ---------------------------------------------
 
 // > Form access global variables..............................................
@@ -542,6 +590,7 @@ function setSubmitListener() {
 
 // > All Listeners.............................................................
 function setPermanentListeners() {
+  setModalListeners();
   setInputListeners();
   setTabListeners();
   setSubmitListener();

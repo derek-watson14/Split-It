@@ -10,6 +10,10 @@
 </head>
 
 <body>
+  <div class="modal-outer">
+    <div class="modal-inner"></div>
+  </div>
+
   <div class="wrapper">
     <div class="header">
       <h1>Split it!</h1>
@@ -19,12 +23,13 @@
       </div>
     </div>
 
+
     <form name="new-trans">
       <div class="form-container">
 
         <div class="section">
           <div class="section__header">
-            <img id="payer-photo" src="./anni.png" alt="anni">
+            <img id="payer-photo" src="./anni.png" alt="anni" data-desc="Anni in Austria!">
             <h2 id="payer-name">Anni Paid:</h2>
             <input type="hidden" id="payer" name="payer" value="anni">
           </div>
@@ -65,7 +70,8 @@
 
         <div class="section">
           <div class="section__header">
-            <img id="ower-photo" src="./derek.png" alt="derek">
+            <img id="ower-photo" src="./derek.png" alt="derek"
+              data-desc="Derek in a tree in Costa Rica!">
             <h2 id="ower-name">Derek Owes:</h2>
             <input type="hidden" id="ower" name="ower" value="derek">
           </div>
