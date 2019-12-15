@@ -51,14 +51,9 @@ const {
 } = trans;
 
 // > General Input Validation..................................................
-function inputAlert(element, message) {
-  if (element.parentElement.classList.contains('input__currency')) {
-    element.parentElement.parentElement.querySelector(
-      '.input__alert'
-    ).textContent = message;
-  } else {
-    element.parentElement.querySelector('.input__alert').textContent = message;
-  }
+function inputAlert(elmt, message) {
+  const alert = elmt.closest('.section__input').querySelector('.input__alert');
+  alert.textContent = message;
 }
 
 function resetAllAlerts() {
@@ -396,42 +391,30 @@ function updateDataHeaders() {
 }
 
 // > Table Tabs................................................................
-function flipActiveTab() {
-  const anni = document.querySelector('#anni-tab');
-  const derek = document.querySelector('#derek-tab');
+function flipTab(event) {
+  const tabButtons = document.querySelectorAll('.table-tab');
 
-  anni.classList.toggle('active');
-  derek.classList.toggle('active');
+  tabButtons.forEach(tab => tab.setAttribute('aria-selected', false));
+  event.currentTarget.setAttribute('aria-selected', true);
 }
 
-function flipHiddenTable() {
-  const anni = document.querySelector('#anni-data');
-  const derek = document.querySelector('#derek-data');
+function flipPanel(event) {
+  const tabPanels = Array.from(document.querySelectorAll('.tab-panel'));
+  const { id } = event.currentTarget;
 
-  if (anni.hidden) {
-    anni.hidden = false;
-    derek.hidden = true;
-  } else {
-    anni.hidden = true;
-    derek.hidden = false;
-  }
+  tabPanels.forEach(p => (p.hidden = true));
+  tabPanels.find(p => p.getAttribute('aria-labelledby') === id).hidden = false;
 }
 
-// > Table Tab Listeners.......................................................
-function handleTabClick(tab) {
-  if (!tab.classList.contains('active')) {
-    flipActiveTab();
-    flipHiddenTable();
-  }
+// > Table Tab Listener........................................................
+function handleTabClick(event) {
+  flipTab(event);
+  flipPanel(event);
 }
 
 function setTabListeners() {
-  const tabs = document.querySelectorAll('.table-tab');
-  tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-      handleTabClick(tab);
-    });
-  });
+  const tabButtons = document.querySelectorAll('.table-tab');
+  tabButtons.forEach(tab => tab.addEventListener('click', handleTabClick));
 }
 
 // > Make Tables...............................................................

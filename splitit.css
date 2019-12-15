@@ -294,22 +294,6 @@ hr{
   flex-direction: row;
   position: relative;
 }
-.table-tab{
-  width: 170px;
-  height: 40px;
-  position: relative;
-  z-index: 0;
-  background: var(--snow);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  user-select: none;
-  outline: none;
-  border: 1px solid #333;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
-  font-weight: 600;
-}
 .table-tab-container:after{
   position: absolute;
   content: "";
@@ -319,22 +303,39 @@ hr{
   border-bottom: 1px solid #333;
   z-index: 1;
 }
-.table-tab.active{
+.table-tab{
+  width: 170px;
+  height: 40px;
+  position: relative;
+  z-index: 0;
+  background: var(--snow);
+  color: var(--coal);
+  text-align: center;
+  line-height: 20px;
+  font-size: 0.95em;
+  user-select: none;
+  outline: none;
+  border: 1px solid #333;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  font-weight: 600;
+}
+.table-tab[aria-selected="true"]{
   background: var(--coal);
   border-bottom-color: var(--coal);
   position: relative;
   z-index: 2;
+  text-align: center;
+  line-height: 20px;
+  font-size: 0.95em;
   color: var(--snow);
 }
-.table-tab.active:hover{
+button[aria-selected="true"]:hover{
   background: var(--coal);
 }
 .table-tab:hover{
   cursor: pointer;
   background: var(--frost);
-}
-.table-tab__label{
-  font-size: 0.9em;
 }
 .trans-table{
   background: #eee;

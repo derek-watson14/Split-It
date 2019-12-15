@@ -104,16 +104,12 @@
       <h2>Transaction Logs</h2>
     </div>
     <div class="table-section-conatiner">
-      <div class="table-tab-container">
-        <div tabindex="0" role="button" class="table-tab active" id="anni-tab">
-          <p class="table-tab__label">Anni</p>
-        </div>
-        <div tabindex="0" role="button" class="table-tab" id="derek-tab">
-          <p class="table-tab__label">Derek</p>
-        </div>
+      <div role="tablist" aria-label="people" class="table-tab-container">
+        <button role="tab" aria-selected="true" class="table-tab" id="anni-tab">Anni</button>
+        <button role="tab" aria-selected="false" class="table-tab" id="derek-tab">Derek</button>
       </div>
       <div class="tables-container">
-        <div class="person-data" id="anni-data">
+        <div role="tabpanel" aria-labelledby="anni-tab" class="tab-panel">
           <div class="data-summary">
             <div class="summary-box" id="anni-paid__total">
               <p class="summary-box__text">Anni has paid: </p>
@@ -136,7 +132,7 @@
             <tbody id="anni-table"></tbody>
           </table>
         </div>
-        <div class="person-data" hidden id="derek-data">
+        <div role="tabpanel" aria-labelledby="derek-tab" class="tab-panel" hidden>
           <div class="data-summary">
             <div class="summary-box" id="derek-paid__total">
               <p class="summary-box__text">Derek has paid: </p>
